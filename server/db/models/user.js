@@ -17,17 +17,13 @@ const User = db.define('user', {
   },
   firstName: {
     type: STRING,
+    allowNull: false,
+    allowEmpty: false
   },
   lastName: {
-    type: STRING
-  },
-  isTeacher: {
-    type: BOOLEAN,
-    defaultValue: false
-  },
-  students: {
-    type: ARRAY(INTEGER),
-    defaultValue: null
+    type: STRING,
+    allowNull: false,
+    allowEmpty: false
   }
 })
 

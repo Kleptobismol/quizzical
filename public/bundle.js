@@ -2005,7 +2005,17 @@ const AuthForm = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     onSubmit: handleSubmit,
     name: name
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+  }, name === 'signup' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", null, "First Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    name: "firstName",
+    type: "text"
+  })) : null, name === 'signup' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", null, "Last Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    name: "lastName",
+    type: "text"
+  })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "email"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", null, "Email")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     name: "email",
@@ -2017,9 +2027,7 @@ const AuthForm = props => {
     type: "password"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     type: "submit"
-  }, displayName)), error && error.response && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", error.response.data, " ")), window.githubURL && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: window.githubURL
-  }, "Login / Register Via Github "));
+  }, displayName)), error && error.response && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", error.response.data, " ")));
 };
 
 const mapLogin = state => {
@@ -2045,7 +2053,9 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_2__.authenticate)(email, password, formName));
+      const firstName = evt.target.firstName ? evt.target.firstName.value : null;
+      const lastName = evt.target.lastName ? evt.target.lastName.value : null;
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_2__.authenticate)(email, password, firstName, lastName, formName));
     }
 
   };
@@ -2077,7 +2087,7 @@ __webpack_require__.r(__webpack_exports__);
 const Home = props => {
   const firstName = props.auth.firstName;
   const lastName = props.auth.lastName;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Welcome, ", firstName ? firstName : 'New User', " ", lastName ? lastName : null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Welcome, ", firstName, " ", lastName));
 };
 
 const mapState = state => {
@@ -2347,14 +2357,24 @@ const me = () => async dispatch => {
   }
 }; // Handles login authentication and fetches user data
 
-const authenticate = (email, password, method) => async dispatch => {
+const authenticate = (email, password, firstName, lastName, method) => async dispatch => {
   let res;
 
   try {
-    res = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(`/auth/${method}`, {
-      email,
-      password
-    });
+    if (method === 'signup') {
+      res = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(`/auth/signup`, {
+        email,
+        password,
+        firstName,
+        lastName
+      });
+    } else {
+      res = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(`/auth/${method}`, {
+        email,
+        password
+      });
+    }
+
     storage().setItem(TOKEN, res.data.token);
     dispatch(me());
   } catch (authError) {

@@ -33,10 +33,14 @@ export const me = () => async dispatch => {
 }
 
 // Handles login authentication and fetches user data
-export const authenticate = (email, password, method) => async dispatch => {
+export const authenticate = (email, password, firstName, lastName, method) => async dispatch => {
   let res
   try {
-    res = await axios.post(`/auth/${method}`, {email, password})
+    if (method === 'signup') {
+      res = await axios.post(`/auth/signup`, {email, password, firstName, lastName})
+    } else {
+      res = await axios.post(`/auth/${method}`, {email, password})
+    }
     storage().setItem(TOKEN, res.data.token)
     dispatch(me())
   } catch (authError) {

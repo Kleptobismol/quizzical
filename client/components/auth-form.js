@@ -9,6 +9,24 @@ const AuthForm = props => {
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
+        { name === 'signup' ? 
+          <div>
+            <label htmlFor="name">
+              <small>First Name</small>
+            </label>
+            <input name="firstName" type="text" />
+          </div> :
+          null
+        }
+        { name === 'signup' ? 
+          <div>
+            <label htmlFor="name">
+              <small>Last Name</small>
+            </label>
+            <input name="lastName" type="text" />
+          </div> :
+          null
+        }
         <div>
           <label htmlFor="email">
             <small>Email</small>
@@ -26,9 +44,6 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      {
-        window.githubURL && <a href={window.githubURL}>Login / Register Via Github </a>
-      }
     </div>
   )
 }
@@ -56,7 +71,9 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(authenticate(email, password, formName))
+      const firstName = evt.target.firstName ? evt.target.firstName.value : null
+      const lastName = evt.target.lastName ? evt.target.lastName.value : null
+      dispatch(authenticate(email, password, firstName, lastName, formName))
     }
   }
 }

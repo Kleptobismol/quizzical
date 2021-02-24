@@ -1,17 +1,43 @@
-//this is the access point for all things database related!
-
 const db = require('./db')
 
+// Models
 const User = require('./models/user');
+const Quiz = require('./models/quiz')
+const Question = require('./models/question')
+const Answer = require('./models/answer')
 
-//associations could go here!
+// Associations
+Quiz.belongsTo(User)
+User.hasMany(Quiz)
+
+Question.belongsTo(Quiz)
+Quiz.hasMany(Question)
+
+Answer.belongsTo(Question)
+Question.hasOne(Answer)
 
 const syncAndSeed =  async()=> {
   await db.sync({force: true})
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123', firstName: 'Cody'}),
-    User.create({email: 'murphy@email.com', password: '123', firstName: 'Murphy'})
+    User.create({email: 'cody@email.com', password: '123', firstName: 'Cody', lastName: 'Smith'}),
+    User.create({email: 'murphy@email.com', password: '123', firstName: 'Murphy', lastName: 'Jones'})
   ])
+
+  await Quiz.create({
+    name: 'Biology Quiz',
+    userId: 1
+  })
+  
+  await Question.create({
+    problem: 'Which answer is "A"?',
+    quizId: 1
+  })
+
+  await Answer.create({
+    solution: 'A',
+    questionId: 1
+  })
+
   const [cody, murphy] = users;
 
   return {
@@ -26,6 +52,9 @@ module.exports = {
   db,
   syncAndSeed,
   models: {
-    User
+    User,
+    Quiz,
+    Question,
+    Answer
   }
 }

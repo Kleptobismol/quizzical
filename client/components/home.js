@@ -8,7 +8,7 @@ export const Home = props => {
 
   return (
     <div>
-      <h3>Welcome, { firstName ? firstName : 'New User' } { lastName ? lastName : null }</h3>
+      <h3>Welcome, { firstName } { lastName }</h3>
     </div>
   )
 }
