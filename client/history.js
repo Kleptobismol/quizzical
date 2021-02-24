@@ -1,5 +1,6 @@
 import {createMemoryHistory, createBrowserHistory} from 'history'
 
+// Creates history for use in components
 const history =
   process.env.NODE_ENV === 'test'
     ? createMemoryHistory()

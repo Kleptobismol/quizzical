@@ -1,9 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-/**
- * COMPONENT
- */
+// Displays Home page
 export const Home = props => {
   const {email} = props
 
@@ -14,9 +12,6 @@ export const Home = props => {
   )
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     email: state.auth.email

@@ -6,6 +6,7 @@ import history from './history'
 import store from './store'
 import App from './app'
 
+// Connects SPA to Redux store and history
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>

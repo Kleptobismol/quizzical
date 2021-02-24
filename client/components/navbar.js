@@ -3,9 +3,11 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
+
+// Displays Navbar
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>FS-App-Template</h1>
+    <h1>Quizzical</h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -27,9 +29,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   </div>
 )
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.auth.id

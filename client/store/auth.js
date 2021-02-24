@@ -1,22 +1,25 @@
 import axios from 'axios'
 import history from '../history'
 
+//  -----------
+// | CONSTANTS |
+//  -----------
 const storage = () => window.localStorage
 const TOKEN = 'token'
 
-/**
- * ACTION TYPES
- */
+// Action names
 const SET_AUTH = 'SET_AUTH'
 
-/**
- * ACTION CREATORS
- */
+//  ---------
+// | ACTIONS |
+//  ---------
 const setAuth = auth => ({type: SET_AUTH, auth})
 
-/**
- * THUNK CREATORS
- */
+//  -------- 
+// | THUNKS |
+//  -------- 
+
+// Fetches existing user data
 export const me = () => async dispatch => {
   const token = storage().getItem(TOKEN)
   if (token) {
@@ -29,6 +32,7 @@ export const me = () => async dispatch => {
   }
 }
 
+// Handles login authentication and fetches user data
 export const authenticate = (email, password, method) => async dispatch => {
   let res
   try {
@@ -40,6 +44,7 @@ export const authenticate = (email, password, method) => async dispatch => {
   }
 }
 
+// Handles logout
 export const logout = () => {
   storage().removeItem(TOKEN)
   history.push('/login')
@@ -49,9 +54,9 @@ export const logout = () => {
   }
 }
 
-/**
- * REDUCER
- */
+//  ---------
+// | REDUCER |
+//  ---------
 export default function(state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
