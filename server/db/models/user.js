@@ -1,27 +1,39 @@
-const Sequelize = require('sequelize')
+const { STRING, BOOLEAN, ARRAY, INTEGER } = require('sequelize')
 const db = require('../db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
-const axios = require('axios');
 
 const SALT_ROUNDS = 5;
 
 const User = db.define('user', {
   email: {
-    type: Sequelize.STRING,
+    type: STRING,
     unique: true,
     allowNull: false
   },
   password: {
-    type: Sequelize.STRING,
+    type: STRING,
+    allowNull: false
+  },
+  firstName: {
+    type: STRING,
+  },
+  lastName: {
+    type: STRING
+  },
+  isTeacher: {
+    type: BOOLEAN,
+    defaultValue: false
+  },
+  students: {
+    type: ARRAY(INTEGER),
+    defaultValue: null
   }
 })
 
 module.exports = User
 
-/**
- * instanceMethods
- */
+// Instance methods
 User.prototype.correctPassword = function(candidatePwd) {
   return bcrypt.compare(candidatePwd, this.password);
 }
@@ -30,9 +42,7 @@ User.prototype.generateToken = function() {
   return jwt.sign({id: this.id}, process.env.JWT)
 }
 
-/**
- * classMethods
- */
+// Class methods
 User.authenticate = async function({ email, password }){
     const user = await this.findOne({where: {email}})
     if (!user || !(await user.correctPassword(password))) {
@@ -58,15 +68,14 @@ User.findByToken = async function(token) {
   }
 }
 
-/**
- * hooks
- */
+// Hooks
 const hashPassword = async(user) => {
   if (user.changed('password')) {
     user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
   }
 }
 
+// Covers password hashing
 User.beforeCreate(hashPassword)
 User.beforeUpdate(hashPassword)
 User.beforeBulkCreate(users => {

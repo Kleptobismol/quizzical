@@ -2075,15 +2075,14 @@ __webpack_require__.r(__webpack_exports__);
  // Displays Home page
 
 const Home = props => {
-  const {
-    email
-  } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Welcome, ", email));
+  const firstName = props.auth.firstName;
+  const lastName = props.auth.lastName;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Welcome, ", firstName ? firstName : 'New User', " ", lastName ? lastName : null));
 };
 
 const mapState = state => {
   return {
-    email: state.auth.email
+    auth: state.auth
   };
 };
 

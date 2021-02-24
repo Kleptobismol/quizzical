@@ -3,18 +3,19 @@ import {connect} from 'react-redux'
 
 // Displays Home page
 export const Home = props => {
-  const {email} = props
+  const firstName = props.auth.firstName
+  const lastName = props.auth.lastName
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>Welcome, { firstName ? firstName : 'New User' } { lastName ? lastName : null }</h3>
     </div>
   )
 }
 
 const mapState = state => {
   return {
-    email: state.auth.email
+    auth: state.auth
   }
 }
 
