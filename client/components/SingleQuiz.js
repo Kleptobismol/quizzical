@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import { fetchQuiz } from '../store/quiz'
-import { gradeQuiz } from '../store/answer'
+import { gradeQuiz } from '../store/score'
 
 // Displays single quiz
 class SingleQuiz extends Component {
