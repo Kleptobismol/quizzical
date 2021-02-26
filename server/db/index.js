@@ -5,6 +5,7 @@ const User = require('./models/user');
 const Quiz = require('./models/quiz')
 const Question = require('./models/question')
 const Answer = require('./models/answer')
+const Score = require('./models/score')
 
 // Associations
 Quiz.belongsTo(User)
@@ -15,6 +16,11 @@ Quiz.hasMany(Question)
 
 Answer.belongsTo(Question)
 Question.hasOne(Answer)
+
+Score.belongsTo(Quiz)
+Quiz.hasMany(Score)
+Score.belongsTo(User)
+User.hasMany(Score)
 
 const syncAndSeed =  async()=> {
   await db.sync({force: true})
@@ -30,12 +36,26 @@ const syncAndSeed =  async()=> {
   
   await Question.create({
     problem: 'Which answer is "A"?',
+    type: 'multiple',
+    options: ['this one?', 'this one?', 'this one?', 'this one?'],
+    quizId: 1
+  })
+
+  await Question.create({
+    problem: 'Which answer is "B"?',
+    type: 'multiple',
+    options: ['this one?', 'this one?', 'this one?', 'this one?'],
     quizId: 1
   })
 
   await Answer.create({
     solution: 'A',
     questionId: 1
+  })
+
+  await Answer.create({
+    solution: 'B',
+    questionId: 2
   })
 
   const [cody, murphy] = users;
@@ -55,6 +75,7 @@ module.exports = {
     User,
     Quiz,
     Question,
-    Answer
+    Answer,
+    Score
   }
 }

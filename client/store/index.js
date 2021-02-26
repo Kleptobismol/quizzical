@@ -4,8 +4,9 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import quizzes from './quiz'
+import scores from './score'
 
-const reducer = combineReducers({ auth, quizzes })
+const reducer = combineReducers({ auth, quizzes, scores })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

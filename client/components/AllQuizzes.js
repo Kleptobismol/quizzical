@@ -4,6 +4,7 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchQuizzes } from '../store/quiz'
 
+// Displays all quizzes
 class AllQuizzes extends Component {
     componentDidMount () {
         this.props.init()

@@ -1995,7 +1995,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // Displays all quizzes
 
 class AllQuizzes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   componentDidMount() {
@@ -2180,7 +2180,7 @@ const Navbar = ({
 }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Quizzical"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
   to: "/home"
 }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/community-quizzes"
+  to: "/quizzes/community"
 }, "Community Quizzes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
   href: "#",
   onClick: handleClick
@@ -2209,6 +2209,148 @@ const mapDispatch = dispatch => {
 
 /***/ }),
 
+/***/ "./client/components/SingleQuiz.js":
+/*!*****************************************!*\
+  !*** ./client/components/SingleQuiz.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_quiz__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/quiz */ "./client/store/quiz.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '../store/answer'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
+
+
+
+ // Displays single quiz
+
+class SingleQuiz extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  componentDidMount() {
+    this.props.init(this.props.match.params.id);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    // Must set to constant otherwise will always update one step behind
+    const value = event.target.value; // Uses name of radio element associated with answer to store answer in local state
+
+    this.setState({
+      [event.target.name]: value
+    });
+  }
+
+  handleSubmit(event) {
+    // Prevents page reloading
+    event.preventDefault();
+    const {
+      quiz,
+      history
+    } = this.props;
+    this.props.gradeQuiz(this.state, quiz.questions, quiz.id, this.props.userId, quiz.questions.length);
+    history.push(`/score/${this.props.userId}/${quiz.id}`);
+  }
+
+  render() {
+    const {
+      quiz
+    } = this.props;
+
+    if (!quiz.name) {
+      return null;
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, quiz.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      onSubmit: event => this.handleSubmit(event),
+      onChange: event => this.handleChange(event)
+    }, quiz.questions.map((question, i) => {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        key: question.id
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, question.problem), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, question.options.map((option, j) => {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+          key: `option${j}`
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+          id: `answer-${question.id}`,
+          type: "radio",
+          value: String.fromCharCode(j + 65),
+          name: `answer-${question.id}`
+        }), `${String.fromCharCode(j + 65)}.`, " ", option);
+      })));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      type: "submit",
+      value: quiz.id
+    }, "Submit")));
+  }
+
+}
+
+const mapState = state => ({
+  quiz: state.quizzes.selectedQuiz,
+  userId: state.auth.id
+});
+
+const mapDispatch = dispatch => ({
+  init: id => dispatch((0,_store_quiz__WEBPACK_IMPORTED_MODULE_2__.fetchQuiz)(id)),
+  gradeQuiz: (answers, questions, quizId, userId, total) => dispatch(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../store/answer'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(answers, questions, quizId, userId, total))
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(SingleQuiz));
+
+/***/ }),
+
+/***/ "./client/components/SingleScore.js":
+/*!******************************************!*\
+  !*** ./client/components/SingleScore.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+ // Displays single score
+
+class SingleScore extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+  render() {
+    const {
+      score
+    } = this.props;
+
+    if (!score.value) {
+      return null;
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " ", score.user.firstName, ", thank you for completing: \"", score.quiz.name, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, " Your score is: ", score.value, "/", score.total));
+  }
+
+}
+
+const mapState = state => ({
+  score: state.scores.selectedScore
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState)(SingleScore));
+
+/***/ }),
+
 /***/ "./client/components/index.js":
 /*!************************************!*\
   !*** ./client/components/index.js ***!
@@ -2221,18 +2363,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Navbar": () => /* reexport safe */ _Navbar__WEBPACK_IMPORTED_MODULE_0__.default,
 /* harmony export */   "Home": () => /* reexport safe */ _Home__WEBPACK_IMPORTED_MODULE_1__.default,
 /* harmony export */   "AllQuizzes": () => /* reexport safe */ _AllQuizzes__WEBPACK_IMPORTED_MODULE_2__.default,
-/* harmony export */   "Login": () => /* reexport safe */ _AuthForm__WEBPACK_IMPORTED_MODULE_3__.Login,
-/* harmony export */   "Signup": () => /* reexport safe */ _AuthForm__WEBPACK_IMPORTED_MODULE_3__.Signup
+/* harmony export */   "SingleQuiz": () => /* reexport safe */ _SingleQuiz__WEBPACK_IMPORTED_MODULE_3__.default,
+/* harmony export */   "SingleScore": () => /* reexport safe */ _SingleScore__WEBPACK_IMPORTED_MODULE_4__.default,
+/* harmony export */   "Login": () => /* reexport safe */ _AuthForm__WEBPACK_IMPORTED_MODULE_5__.Login,
+/* harmony export */   "Signup": () => /* reexport safe */ _AuthForm__WEBPACK_IMPORTED_MODULE_5__.Signup
 /* harmony export */ });
 /* harmony import */ var _Navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navbar */ "./client/components/Navbar.js");
 /* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home */ "./client/components/Home.js");
 /* harmony import */ var _AllQuizzes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AllQuizzes */ "./client/components/AllQuizzes.js");
-/* harmony import */ var _AuthForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AuthForm */ "./client/components/AuthForm.js");
+/* harmony import */ var _SingleQuiz__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleQuiz */ "./client/components/SingleQuiz.js");
+/* harmony import */ var _SingleScore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SingleScore */ "./client/components/SingleScore.js");
+/* harmony import */ var _AuthForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AuthForm */ "./client/components/AuthForm.js");
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+
+
 
 
 
@@ -2328,8 +2476,14 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       path: "/home",
       component: _components__WEBPACK_IMPORTED_MODULE_2__.Home
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
-      path: "/community-quizzes",
+      path: "/quizzes/community",
       component: _components__WEBPACK_IMPORTED_MODULE_2__.AllQuizzes
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+      path: "/quizzes/:id",
+      component: _components__WEBPACK_IMPORTED_MODULE_2__.SingleQuiz
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+      path: "/score/:userId/:quizId",
+      component: _components__WEBPACK_IMPORTED_MODULE_2__.SingleScore
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Redirect, {
       to: "/home"
     })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
@@ -2482,27 +2636,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "logout": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.logout,
 /* harmony export */   "me": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.me
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth */ "./client/store/auth.js");
 /* harmony import */ var _quiz__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./quiz */ "./client/store/quiz.js");
+/* harmony import */ var _score__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./score */ "./client/store/score.js");
 
 
 
 
 
 
-const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_5__.combineReducers)({
+
+const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_6__.combineReducers)({
   auth: _auth__WEBPACK_IMPORTED_MODULE_3__.default,
-  quizzes: _quiz__WEBPACK_IMPORTED_MODULE_4__.default
+  quizzes: _quiz__WEBPACK_IMPORTED_MODULE_4__.default,
+  scores: _score__WEBPACK_IMPORTED_MODULE_5__.default
 });
-const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_5__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
+const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_6__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-const store = (0,redux__WEBPACK_IMPORTED_MODULE_5__.createStore)(reducer, middleware);
+const store = (0,redux__WEBPACK_IMPORTED_MODULE_6__.createStore)(reducer, middleware);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 
@@ -2518,7 +2675,9 @@ const store = (0,redux__WEBPACK_IMPORTED_MODULE_5__.createStore)(reducer, middle
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setQuizzes": () => /* binding */ setQuizzes,
+/* harmony export */   "setSelectedQuiz": () => /* binding */ setSelectedQuiz,
 /* harmony export */   "fetchQuizzes": () => /* binding */ fetchQuizzes,
+/* harmony export */   "fetchQuiz": () => /* binding */ fetchQuiz,
 /* harmony export */   "default": () => /* binding */ quizReducer
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -2532,13 +2691,18 @@ const initialState = {
 // | CONSTANTS |
 //  -----------
 
-const SET_QUIZZES = 'SET_QUIZZES'; //  ---------
+const SET_QUIZZES = 'SET_QUIZZES';
+const SET_SELECTED_QUIZ = 'SET_SELECTED_QUIZ'; //  ---------
 // | ACTIONS |
 //  ---------
 
 const setQuizzes = quizzes => ({
   type: SET_QUIZZES,
   quizzes
+});
+const setSelectedQuiz = selectedQuiz => ({
+  type: SET_SELECTED_QUIZ,
+  selectedQuiz
 }); //  -------- 
 // | THUNKS |
 //  -------- 
@@ -2549,6 +2713,13 @@ const fetchQuizzes = () => {
     const quizzes = (await axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/quizzes')).data;
     dispatch(setQuizzes(quizzes));
   };
+}; // Fetches single quiz data
+
+const fetchQuiz = id => {
+  return async dispatch => {
+    const selectedQuiz = (await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/quizzes/${id}`)).data;
+    dispatch(setSelectedQuiz(selectedQuiz));
+  };
 }; //  ---------
 // | REDUCER |
 //  ---------
@@ -2558,6 +2729,84 @@ function quizReducer(state = initialState, action) {
     case SET_QUIZZES:
       return { ...state,
         quizzes: action.quizzes
+      };
+
+    case SET_SELECTED_QUIZ:
+      return { ...state,
+        selectedQuiz: action.selectedQuiz
+      };
+
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./client/store/score.js":
+/*!*******************************!*\
+  !*** ./client/store/score.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setSelectedScore": () => /* binding */ setSelectedScore,
+/* harmony export */   "gradeQuiz": () => /* binding */ gradeQuiz,
+/* harmony export */   "default": () => /* binding */ answerReducer
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ // Initial State
+
+const initialState = {
+  selectedScore: {}
+}; //  -----------
+// | CONSTANTS |
+//  -----------
+
+const SET_SELECTED_SCORE = 'SET_SELECTED_SCORE'; //  ---------
+// | ACTIONS |
+//  ---------
+
+const setSelectedScore = selectedScore => ({
+  type: SET_SELECTED_SCORE,
+  selectedScore
+}); //  -------- 
+// | THUNKS |
+//  -------- 
+// Grades quiz, sets score for display
+
+const gradeQuiz = (answers, questions, quizId, userId, total) => {
+  return async dispatch => {
+    let value = 0;
+
+    for (let i = 0; i < questions.length; i++) {
+      let question = questions[i];
+      const userAnswer = answers[`answer-${question.id}`];
+      const correctAnswer = (await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/answers/${question.id}`)).data;
+      const isCorrect = correctAnswer.solution === userAnswer ? true : false;
+      value += isCorrect ? 1 : 0;
+    }
+
+    const score = (await axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/scores/create', {
+      value: value,
+      quizId: quizId,
+      userId: userId,
+      total: total
+    })).data;
+    dispatch(setSelectedScore(score));
+  };
+}; //  ---------
+// | REDUCER |
+//  ---------
+
+function answerReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_SELECTED_SCORE:
+      return { ...state,
+        selectedScore: action.selectedScore
       };
 
     default:
