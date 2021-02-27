@@ -5,7 +5,8 @@
  */
 export { default as Navbar } from './Navbar'
 export { default as Home } from './Home'
-export { default as AllQuizzes } from './AllQuizzes'
+export { default as CommunityQuizzes } from './CommunityQuizzes'
+export { default as TakenQuizzes } from './TakenQuizzes'
 export { default as SingleQuiz } from './SingleQuiz'
 export { default as SingleScore } from './SingleScore'
 export { Login, Signup } from './AuthForm'

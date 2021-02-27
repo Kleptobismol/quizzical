@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import { fetchQuizzes } from '../store/quiz'
 
 // Displays all quizzes
-class AllQuizzes extends Component {
+class CommunityQuizzes extends Component {
     componentDidMount () {
-        this.props.init()
+        this.props.init(this.props.userId)
     }
 
     render () {
@@ -26,11 +26,12 @@ class AllQuizzes extends Component {
 }
 
 const mapState = (state) => ({
-    quizzes: state.quizzes.quizzes
+    quizzes: state.quizzes.quizzes,
+    userId: state.auth.id
 })
 
 const mapDispatch = (dispatch) => ({
-    init: () => dispatch(fetchQuizzes())
+    init: (userId) => dispatch(fetchQuizzes(userId)),
 })
 
-export default connect(mapState, mapDispatch)(AllQuizzes);
+export default connect(mapState, mapDispatch)(CommunityQuizzes);

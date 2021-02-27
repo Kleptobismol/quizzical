@@ -20,9 +20,11 @@ export const setSelectedQuiz = (selectedQuiz) => ({ type: SET_SELECTED_QUIZ, sel
 //  -------- 
 
 // Fetches quiz data
-export const fetchQuizzes = () => {
+export const fetchQuizzes = (userId, getTaken=null) => {
     return async(dispatch) => {
-        const quizzes = (await axios.get('/api/quizzes')).data
+        let quizzes = (await axios.get('/api/quizzes')).data
+        const taken = (await axios.get(`/api/scores/taken/${ userId }`)).data
+        quizzes = quizzes.filter( quiz => getTaken ? taken.includes(quiz.id) : !taken.includes(quiz.id)) 
         dispatch(setQuizzes(quizzes))
     }
 }

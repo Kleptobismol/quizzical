@@ -7,7 +7,7 @@ class SingleScore extends Component {
     render () {
         const { score } = this.props;
 
-        if (!score.value) {
+        if (!score.total) {
             return null
         }
 
