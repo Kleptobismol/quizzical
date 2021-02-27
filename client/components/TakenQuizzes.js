@@ -20,30 +20,37 @@ class TakenQuizzes extends Component {
         const { quizzes, userId } = this.props;
 
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th> Quiz Name </th>
-                        <th> Score </th>
-                        <th> Date Taken </th>
-                    </tr>
-                </thead>
-                <tbody>
-                {/* <Link key={ quiz.id } to={ `/quizzes/${ quiz.id }` }>{ quiz.name }</Link> */}
-                    { quizzes.map( quiz => {
-                        const score = quiz.scores.filter(score => score.userId === userId)[0]
-                        return (
-                            score ? 
-                            <tr key={ quiz.id }> 
-                                <td> { quiz.name } </td>
-                                <td> {  score.value }/{ score.total }</td>
-                                <td> { score.createdAt } </td>
-                                <td> <button value={ quiz.id } onClick={ (event) => this.handleClick(event) }> Retake </button></td>
-                            </tr> : null
-                        )
-                    })}
-                </tbody>
-            </table>
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <table className='table table-custom table-image'>
+                            <thead className='thead-custom'>
+                                <tr>
+                                    <th className='text-white'> Quiz Name </th>
+                                    <th className='text-white'> Score </th>
+                                    <th className='text-white'> Date Taken </th>
+                                    <th className='text-white'> Retake Quiz </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {/* <Link key={ quiz.id } to={ `/quizzes/${ quiz.id }` }>{ quiz.name }</Link> */}
+                                { quizzes.map( quiz => {
+                                    const score = quiz.scores.filter(score => score.userId === userId)[0]
+                                    return (
+                                        score ? 
+                                        <tr key={ quiz.id }> 
+                                            <td> { quiz.name } </td>
+                                            <td> {  score.value }/{ score.total }</td>
+                                            <td> { score.createdAt } </td>
+                                            <td> <button value={ quiz.id } onClick={ (event) => this.handleClick(event) } className='btn btn-primary-custom'> Retake </button></td>
+                                        </tr> : null
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         )
     }
 }

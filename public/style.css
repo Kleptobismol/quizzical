@@ -1,21 +1,71 @@
+
+/* HIGH-LEVEL */
+html {
+  background-color: #f1e7fe;
+}
+
 body {
-  font-family: sans-serif;
+  background-color: #f1e7fe;
 }
 
-a {
-  text-decoration: none;
+div {
+  background-color: #f1e7fe;
 }
 
-label {
-  display: block;
+/* BACKGROUNDS */
+.background-custom {
+  background-color: #f1e7fe;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+/* TEXT */
+.text-custom {
+  color: #736598;
+}
+.text-white {
+  color: white;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
+/* HEADERS */
+.header-custom {
+  color: #736598;
+  background-color: #f1e7fe;
+}
+
+/* NAVBAR */
+.navbar-custom {
+  background-color: #9a12b3;
+  color: #f1e7fe
+}
+
+.nav-link-custom {
+  color: #f1e7fe;
+}
+
+/* BUTTONS */
+.btn-primary-custom {
+  background-color: #8c14fc !important;
+  color: #f1e7fe !important;
+}
+
+.btn-warning-custom {
+  background-color: #a537fd !important;
+  color: #f1e7fe !important;
+}
+
+.btn-danger-custom {
+  background-color: #913d88 !important;
+  color: #f1e7fe !important;
+}
+
+.radio-custom:checked {
+  color: #a537fd !important
+}
+
+/* TABLE */
+.table-custom {
+  background-color: #be90d4 !important;
+}
+
+.thead-custom {
+  background-color: #9b59b6 !important;
 }

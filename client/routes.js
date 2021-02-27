@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
-import { Login, Signup, Home, CommunityQuizzes, TakenQuizzes, SingleQuiz, SingleScore } from './components'
+import { Login, Signup, Home, CommunityQuizzes, TakenQuizzes, SingleQuiz, SingleScore, QuizCreator } from './components'
 import { me } from './store'
 
 // Defines routes to allow for single page app traversal
@@ -20,6 +20,7 @@ class Routes extends Component {
             <Route path="/home" component={ Home } />
             <Route path="/quizzes/community" component={ CommunityQuizzes } />
             <Route path="/quizzes/taken" component={ TakenQuizzes } />
+            <Route path='/quizzes/create' component={ QuizCreator } />
             <Route path='/quizzes/:id' component={ SingleQuiz } />
             <Route path='/score/:userId/:quizId' component={ SingleScore } />
             <Redirect to="/home" />

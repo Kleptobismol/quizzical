@@ -36,14 +36,12 @@ const syncAndSeed =  async()=> {
   
   await Question.create({
     problem: 'Which answer is "A"?',
-    type: 'multiple',
     options: ['this one?', 'this one?', 'this one?', 'this one?'],
     quizId: 1
   })
 
   await Question.create({
     problem: 'Which answer is "B"?',
-    type: 'multiple',
     options: ['this one?', 'this one?', 'this one?', 'this one?'],
     quizId: 1
   })

@@ -7,8 +7,8 @@ export const Home = props => {
   const lastName = props.auth.lastName
 
   return (
-    <div>
-      <h3>Welcome, { firstName } { lastName }</h3>
+    <div className='text-center'>
+      <h3 className='display-1 header-custom'>Welcome, { firstName } { lastName }</h3>
     </div>
   )
 }

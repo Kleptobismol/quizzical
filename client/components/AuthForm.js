@@ -7,11 +7,11 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className='container text-center justify-content-center'>
       <form onSubmit={handleSubmit} name={name}>
         { name === 'signup' ? 
           <div>
-            <label htmlFor="name">
+            <label htmlFor="name" className='text-custom'>
               <small>First Name</small>
             </label>
             <input name="firstName" type="text" />
@@ -20,7 +20,7 @@ const AuthForm = props => {
         }
         { name === 'signup' ? 
           <div>
-            <label htmlFor="name">
+            <label htmlFor="name" className='text-custom'>
               <small>Last Name</small>
             </label>
             <input name="lastName" type="text" />
@@ -28,19 +28,19 @@ const AuthForm = props => {
           null
         }
         <div>
-          <label htmlFor="email">
+          <label htmlFor="email" className='text-custom'>
             <small>Email</small>
           </label>
           <input name="email" type="text" />
         </div>
         <div>
-          <label htmlFor="password">
+          <label htmlFor="password" className='text-custom'>
             <small>Password</small>
           </label>
           <input name="password" type="password" />
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+          <button type="submit" className='btn btn-primary-custom'>{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>

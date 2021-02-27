@@ -6,11 +6,6 @@ const Question = db.define('question', {
         type: TEXT,
         allowNull: false
     },
-    type: {
-        type: STRING,
-        allowNull: false,
-        isIn: ['multiple', 'tf']
-    },
     options: {
         type: ARRAY(TEXT),
         allowNull: false

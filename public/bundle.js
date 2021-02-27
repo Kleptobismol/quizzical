@@ -2002,31 +2002,38 @@ const AuthForm = props => {
     handleSubmit,
     error
   } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "container text-center justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     onSubmit: handleSubmit,
     name: name
   }, name === 'signup' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: "name"
+    htmlFor: "name",
+    className: "text-custom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", null, "First Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     name: "firstName",
     type: "text"
   })) : null, name === 'signup' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: "name"
+    htmlFor: "name",
+    className: "text-custom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", null, "Last Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     name: "lastName",
     type: "text"
   })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: "email"
+    htmlFor: "email",
+    className: "text-custom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", null, "Email")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     name: "email",
     type: "text"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: "password"
+    htmlFor: "password",
+    className: "text-custom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", null, "Password")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     name: "password",
     type: "password"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    type: "submit"
+    type: "submit",
+    className: "btn btn-primary-custom"
   }, displayName)), error && error.response && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", error.response.data, " ")));
 };
 
@@ -2098,10 +2105,21 @@ class CommunityQuizzes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       quizzes
     } = this.props;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, quizzes.map(quiz => {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         key: quiz.id,
-        to: `/quizzes/${quiz.id}`
-      }, quiz.name);
+        className: "card text-center",
+        style: {
+          width: 18 + 'rem'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+        className: "card-title text-custom"
+      }, quiz.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "card-text"
+      }, quiz.questions.length, " Questions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+        key: quiz.id,
+        to: `/quizzes/${quiz.id}`,
+        className: "card-link"
+      }, "Take Quiz"));
     }));
   }
 
@@ -2141,7 +2159,11 @@ __webpack_require__.r(__webpack_exports__);
 const Home = props => {
   const firstName = props.auth.firstName;
   const lastName = props.auth.lastName;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Welcome, ", firstName, " ", lastName));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+    className: "display-1 header-custom"
+  }, "Welcome, ", firstName, " ", lastName));
 };
 
 const mapState = state => {
@@ -2178,20 +2200,35 @@ __webpack_require__.r(__webpack_exports__);
 const Navbar = ({
   handleClick,
   isLoggedIn
-}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Quizzical"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  className: "text-center"
+}, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  className: "nav nav-tabs justify-content-around navbar-custom"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Quizzical "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  className: "nav-link nav-link-custom",
   to: "/home"
 }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  className: "nav-link nav-link-custom",
+  to: "/quizzes/create"
+}, "Create Quiz"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  className: "nav-link nav-link-custom",
   to: "/quizzes/community"
 }, "Community Quizzes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  className: "nav-link nav-link-custom",
   to: "/quizzes/taken"
 }, "Taken Quizzes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+  className: "nav-link nav-link-custom",
   href: "#",
   onClick: handleClick
-}, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+}, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  className: "nav nav-tabs justify-content-around"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Quizzical "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  className: "nav-link nav-link-custom",
   to: "/login"
 }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  className: "nav-link nav-link-custom",
   to: "/signup"
-}, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null));
+}, "Sign Up")));
 
 const mapState = state => {
   return {
@@ -2209,6 +2246,345 @@ const mapDispatch = dispatch => {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Navbar));
+
+/***/ }),
+
+/***/ "./client/components/QuizCreator.js":
+/*!******************************************!*\
+  !*** ./client/components/QuizCreator.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_quiz__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/quiz */ "./client/store/quiz.js");
+
+
+
+ // Displays single quiz
+
+class QuizCreator extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+  constructor() {
+    super();
+    this.state = {
+      isUpdating: false,
+      index: 1,
+      questions: {},
+      selectedQuestion: {}
+    };
+  }
+
+  componentDidMount() {
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSpecSubmit = this.handleSpecSubmit.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleAnswersReset = this.handleAnswersReset.bind(this);
+    this.handleProblemChange = this.handleProblemChange.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+  }
+
+  handleChange(event) {
+    // Must set to constant otherwise will always update one step behind
+    const value = event.target.name === 'numberOfAnswers' && event.target.value === '' ? null : event.target.value; // Uses name of radio element associated with answer to store answer in local state
+
+    this.setState({
+      [event.target.name]: {
+        value: value,
+        isClosed: false
+      }
+    });
+  }
+
+  handleProblemChange(event) {
+    let value = event.target.value;
+
+    if (event.target.name.startsWith('question')) {
+      this.setState({
+        selectedQuestion: {
+          name: event.target.name,
+          value: value,
+          isClosed: false
+        }
+      });
+    } else if (event.target.name.startsWith('correct')) {
+      value = value.toUpperCase();
+      this.setState({
+        selectedQuestion: { ...this.state.selectedQuestion,
+          correctAnswer: value
+        }
+      });
+    } else {
+      this.setState({
+        selectedQuestion: { ...this.state.selectedQuestion,
+          answers: { ...this.state.selectedQuestion.answers,
+            [event.target.name.slice(-1)]: {
+              name: event.target.name,
+              value: value
+            }
+          }
+        }
+      });
+    }
+  }
+
+  handleSpecSubmit(event, problem = false) {
+    if (problem) {
+      this.setState({
+        selectedQuestion: { ...this.state.selectedQuestion,
+          isClosed: true
+        }
+      });
+      return;
+    }
+
+    this.setState({
+      [event.target.name]: { ...this.state[event.target.name],
+        isClosed: true
+      }
+    });
+  }
+
+  handleEdit(event, problem = false, problemName = false) {
+    if (problem) {
+      const question = this.state.questions[event.target.name];
+      const index = this.state.index - 1;
+      this.setState({ ...this.state,
+        selectedQuestion: question,
+        questions: { ...this.state.questions,
+          [event.target.name]: null
+        },
+        isUpdating: true,
+        index: index
+      });
+      return;
+    } else if (problemName) {
+      this.setState({ ...this.state,
+        selectedQuestion: { ...this.state.selectedQuestion,
+          isClosed: false
+        }
+      });
+    }
+
+    this.setState({
+      [event.target.name]: { ...this.state[event.target.name],
+        isClosed: false
+      }
+    });
+  }
+
+  handleCreate() {
+    this.setState({ ...this.state,
+      isUpdating: true
+    });
+  }
+
+  handleCancel() {
+    this.setState({ ...this.state,
+      isUpdating: false
+    });
+  }
+
+  handleQuestionSubmit() {
+    const question = this.state.selectedQuestion;
+    const index = this.state.index + 1;
+    this.setState({ ...this.state,
+      selectedQuestion: {},
+      questions: { ...this.state.questions,
+        [question.name.slice(-1)]: question
+      },
+      isUpdating: false,
+      numberOfAnswers: null,
+      index: index
+    });
+  }
+
+  handleAnswersReset() {
+    this.setState({ ...this.state,
+      selectedQuestion: { ...this.state.selectedQuestion,
+        answers: {}
+      },
+      numberOfAnswers: null
+    });
+  }
+
+  handleSubmit(event) {
+    // Prevents page reloading
+    event.preventDefault();
+    this.props.createQuiz(this.state.name, this.state.questions);
+  }
+
+  render() {
+    console.log(this.state);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "container justify-content-center text-center background-custom"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      className: "display-1 header-custom"
+    }, "Quiz Creator"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", {
+      className: "text-custom"
+    }, " Note: all input fields are required, do not leave them blank! Make sure you submit all your questions before submitting quiz. Click 'Ok' to see a preview of each item! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      onSubmit: event => this.handleSubmit(event)
+    }, this.state.name && this.state.name.isClosed ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      className: "text-center header-custom"
+    }, this.state.name.value, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      name: "name",
+      onClick: event => this.handleEdit(event),
+      className: "btn btn-warning-custom"
+    }, "Edit"), " ")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "row justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-lg-4 col-lg-offset-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "input-group text-center align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: "name",
+      className: "text-custom"
+    }, "Quiz Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      onChange: event => this.handleChange(event),
+      name: "name",
+      type: "text",
+      className: "form-control"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "input-group-btn"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      name: "name",
+      onClick: event => this.handleSpecSubmit(event),
+      className: "btn btn-primary-custom"
+    }, "OK"))))), this.state.questions ? Object.keys(this.state.questions).map((key, i) => {
+      const question = this.state.questions[key];
+
+      if (question) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          key: question.name,
+          className: "card text-center",
+          style: {
+            width: 18 + 'rem'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+          className: "card-title"
+        }, key, ". ", question.value), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+          className: "list-group list-group-flush"
+        }, Object.keys(question.answers).map((answerKey, j) => {
+          const answer = question.answers[answerKey];
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+            key: `answer-display-${j}`,
+            className: "list-group-item"
+          }, `${String.fromCharCode(j + 65)}.`, " ", answer.value);
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+          className: "list-group-item"
+        }, "Correct Answer: ", question.correctAnswer)), this.state.isUpdating ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          name: key,
+          onClick: event => this.handleEdit(event, true),
+          className: "btn btn-warning-custom"
+        }, "Edit"));
+      } else {
+        null;
+      }
+    }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), this.state.isUpdating ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "row justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-lg-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+      className: "header-custom"
+    }, " New Question "), this.state.selectedQuestion && this.state.selectedQuestion.isClosed ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+      className: "header-custom"
+    }, this.state.selectedQuestion.value, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      name: "question",
+      type: "button",
+      onClick: event => this.handleEdit(event, false, true),
+      className: "btn btn-warning-custom"
+    }, "Edit")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "input-group text-center align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: `question-${this.state.index}`,
+      className: "text-custom"
+    }, "Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      onChange: event => this.handleProblemChange(event),
+      name: `question-${this.state.index}`,
+      type: "text",
+      className: "form-control"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      className: "input-group-btn"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      name: `question-${this.state.index}`,
+      onClick: event => this.handleSpecSubmit(event, true),
+      className: "btn btn-primary-custom"
+    }, "Ok"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "input-group text-center align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: "numberOfAnswers",
+      className: "text-custom"
+    }, "Number of Possible Answers", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("small", {
+      className: "text-cusom"
+    }, "(between 2 and 26)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      onChange: event => this.handleChange(event),
+      name: "numberOfAnswers",
+      type: "number",
+      min: "2",
+      max: "26",
+      className: "form-control"
+    })), this.state.numberOfAnswers && this.state.numberOfAnswers.value ?
+    /*#__PURE__*/
+    // JSX version of for loop, in order to assign unique id's and create specified amount of answers
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      className: "text-custom"
+    }, "Possible Answers"), [...Array(parseInt(this.state.numberOfAnswers.value))].map((_, i) => i).map((_, i) => {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        key: `answer-label-${i}`,
+        className: "input-group text-center align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        htmlFor: `answer-${this.state.index}-${i + 1}`,
+        className: "text-custom"
+      }, " ", `${String.fromCharCode(i + 65)}. `), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        onChange: event => this.handleProblemChange(event),
+        name: `answer-${this.state.index}-${i + 1}`,
+        className: "form-control"
+      }));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: `correct-${this.state.index}`,
+      className: "text-custom"
+    }, "Correct Answer (i.e. \"A\"):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      onChange: event => this.handleProblemChange(event),
+      name: `correct-${this.state.index}`,
+      className: "form-control"
+    })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "btn-group"
+    }, this.state.numberOfAnswers ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: () => this.handleAnswersReset(),
+      className: "btn btn-warning-custom"
+    }, "Reset Answers") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: () => this.handleCancel(),
+      className: "btn btn-danger-custom"
+    }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      name: `question-${this.state.index}`,
+      onClick: () => this.handleQuestionSubmit(),
+      className: "btn btn-primary-custom"
+    }, "Submit Question")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: () => this.handleCreate(),
+      className: "btn btn-primary-custom"
+    }, "New Question")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), Object.keys(this.state.questions).length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: event => this.handleSubmit(event),
+      className: "btn btn-primary-custom"
+    }, " Submit Quiz ") : null));
+  }
+
+}
+
+const mapState = state => ({
+  state
+});
+
+const mapDispatch = dispatch => ({
+  createQuiz: (name, questions) => dispatch((0,_store_quiz__WEBPACK_IMPORTED_MODULE_2__.createQuiz)(name, questions))
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(QuizCreator));
 
 /***/ }),
 
@@ -2275,26 +2651,40 @@ class SingleQuiz extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       return null;
     }
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, quiz.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-      onSubmit: event => this.handleSubmit(event),
-      onChange: event => this.handleChange(event)
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "container justify-content-center text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      className: "display-1 header-custom"
+    }, quiz.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      onChange: event => this.handleChange(event),
+      className: "row justify-content-around"
     }, quiz.questions.map((question, i) => {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         key: question.id
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, question.problem), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, question.options.map((option, j) => {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-          key: `option${j}`
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+        className: "header-custom"
+      }, i + 1, ". ", question.problem), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "text-center"
+      }, question.options.map((option, j) => {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "row justify-content-around form-check"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
           id: `answer-${question.id}`,
           type: "radio",
           value: String.fromCharCode(j + 65),
-          name: `answer-${question.id}`
-        }), `${String.fromCharCode(j + 65)}.`, " ", option);
+          name: `answer-${question.id}`,
+          className: "form-check-input radio-custom"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+          key: `option${j}`,
+          className: "row"
+        }, `${String.fromCharCode(j + 65)}.`, " ", option));
       })));
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      type: "submit",
-      value: quiz.id
-    }, "Submit")));
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      type: "button",
+      onClick: event => this.handleSubmit(event),
+      value: quiz.id,
+      className: "btn btn-primary-custom"
+    }, "Submit"));
   }
 
 }
@@ -2341,7 +2731,13 @@ class SingleScore extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       return null;
     }
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " ", score.user.firstName, ", thank you for completing: \"", score.quiz.name, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, " Your score is: ", score.value, "/", score.total));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "justify-content-center text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      className: "display-1 header-custom"
+    }, " ", score.user.firstName, ", thank you for completing: \"", score.quiz.name, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+      className: "display-2 header-custom"
+    }, " Your score is: ", score.value, "/", score.total));
   }
 
 }
@@ -2390,15 +2786,34 @@ class TakenQuizzes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       quizzes,
       userId
     } = this.props;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, " Quiz Name "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, " Score "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", null, " Date Taken "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, quizzes.map(quiz => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-12"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+      className: "table table-custom table-image"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", {
+      className: "thead-custom"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      className: "text-white"
+    }, " Quiz Name "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      className: "text-white"
+    }, " Score "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      className: "text-white"
+    }, " Date Taken "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      className: "text-white"
+    }, " Retake Quiz "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, quizzes.map(quiz => {
       const score = quiz.scores.filter(score => score.userId === userId)[0];
       return score ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
         key: quiz.id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, " ", quiz.name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, " ", score.value, "/", score.total), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, " ", score.createdAt, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         value: quiz.id,
-        onClick: event => this.handleClick(event)
+        onClick: event => this.handleClick(event),
+        className: "btn btn-primary-custom"
       }, " Retake "))) : null;
-    })));
+    }))))));
   }
 
 }
@@ -2431,8 +2846,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "TakenQuizzes": () => /* reexport safe */ _TakenQuizzes__WEBPACK_IMPORTED_MODULE_3__.default,
 /* harmony export */   "SingleQuiz": () => /* reexport safe */ _SingleQuiz__WEBPACK_IMPORTED_MODULE_4__.default,
 /* harmony export */   "SingleScore": () => /* reexport safe */ _SingleScore__WEBPACK_IMPORTED_MODULE_5__.default,
-/* harmony export */   "Login": () => /* reexport safe */ _AuthForm__WEBPACK_IMPORTED_MODULE_6__.Login,
-/* harmony export */   "Signup": () => /* reexport safe */ _AuthForm__WEBPACK_IMPORTED_MODULE_6__.Signup
+/* harmony export */   "QuizCreator": () => /* reexport safe */ _QuizCreator__WEBPACK_IMPORTED_MODULE_6__.default,
+/* harmony export */   "Login": () => /* reexport safe */ _AuthForm__WEBPACK_IMPORTED_MODULE_7__.Login,
+/* harmony export */   "Signup": () => /* reexport safe */ _AuthForm__WEBPACK_IMPORTED_MODULE_7__.Signup
 /* harmony export */ });
 /* harmony import */ var _Navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navbar */ "./client/components/Navbar.js");
 /* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home */ "./client/components/Home.js");
@@ -2440,12 +2856,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TakenQuizzes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TakenQuizzes */ "./client/components/TakenQuizzes.js");
 /* harmony import */ var _SingleQuiz__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SingleQuiz */ "./client/components/SingleQuiz.js");
 /* harmony import */ var _SingleScore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SingleScore */ "./client/components/SingleScore.js");
-/* harmony import */ var _AuthForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AuthForm */ "./client/components/AuthForm.js");
+/* harmony import */ var _QuizCreator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./QuizCreator */ "./client/components/QuizCreator.js");
+/* harmony import */ var _AuthForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AuthForm */ "./client/components/AuthForm.js");
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+
 
 
 
@@ -2549,6 +2967,9 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
       path: "/quizzes/taken",
       component: _components__WEBPACK_IMPORTED_MODULE_2__.TakenQuizzes
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+      path: "/quizzes/create",
+      component: _components__WEBPACK_IMPORTED_MODULE_2__.QuizCreator
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
       path: "/quizzes/:id",
       component: _components__WEBPACK_IMPORTED_MODULE_2__.SingleQuiz
@@ -2747,8 +3168,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setQuizzes": () => /* binding */ setQuizzes,
 /* harmony export */   "setSelectedQuiz": () => /* binding */ setSelectedQuiz,
+/* harmony export */   "addQuiz": () => /* binding */ addQuiz,
 /* harmony export */   "fetchQuizzes": () => /* binding */ fetchQuizzes,
 /* harmony export */   "fetchQuiz": () => /* binding */ fetchQuiz,
+/* harmony export */   "createQuiz": () => /* binding */ createQuiz,
 /* harmony export */   "default": () => /* binding */ quizReducer
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -2763,7 +3186,8 @@ const initialState = {
 //  -----------
 
 const SET_QUIZZES = 'SET_QUIZZES';
-const SET_SELECTED_QUIZ = 'SET_SELECTED_QUIZ'; //  ---------
+const SET_SELECTED_QUIZ = 'SET_SELECTED_QUIZ';
+const ADD_QUIZ = 'ADD_QUIZ'; //  ---------
 // | ACTIONS |
 //  ---------
 
@@ -2774,6 +3198,10 @@ const setQuizzes = quizzes => ({
 const setSelectedQuiz = selectedQuiz => ({
   type: SET_SELECTED_QUIZ,
   selectedQuiz
+});
+const addQuiz = quiz => ({
+  type: ADD_QUIZ,
+  quiz
 }); //  -------- 
 // | THUNKS |
 //  -------- 
@@ -2793,6 +3221,16 @@ const fetchQuiz = id => {
     const selectedQuiz = (await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/quizzes/${id}`)).data;
     dispatch(setSelectedQuiz(selectedQuiz));
   };
+}; // Creates quiz
+
+const createQuiz = (name, questions) => {
+  return async dispatch => {
+    const quiz = (await axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/quizzes/create', {
+      name: name,
+      questions: questions
+    })).data;
+    dispatch(addQuiz(quiz));
+  };
 }; //  ---------
 // | REDUCER |
 //  ---------
@@ -2807,6 +3245,11 @@ function quizReducer(state = initialState, action) {
     case SET_SELECTED_QUIZ:
       return { ...state,
         selectedQuiz: action.selectedQuiz
+      };
+
+    case ADD_QUIZ:
+      return { ...state,
+        quizzes: [...state.quizzes, action.quiz]
       };
 
     default:

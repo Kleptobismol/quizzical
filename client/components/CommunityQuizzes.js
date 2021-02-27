@@ -17,7 +17,11 @@ class CommunityQuizzes extends Component {
             <div>
                 { quizzes.map( quiz => {
                     return (
-                        <Link key={ quiz.id } to={ `/quizzes/${ quiz.id }` }>{ quiz.name }</Link>
+                        <div key={ quiz.id } className='card text-center' style={{ width: 18 + 'rem' }}>
+                            <h3 className='card-title text-custom'>{ quiz.name }</h3>
+                            <p className='card-text'>{ quiz.questions.length } Questions</p>
+                            <Link key={ quiz.id } to={ `/quizzes/${ quiz.id }` } className='card-link'>Take Quiz</Link>
+                        </div>
                     )
                 })}
             </div>

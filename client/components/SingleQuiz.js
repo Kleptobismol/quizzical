@@ -46,29 +46,28 @@ class SingleQuiz extends Component {
         }
 
         return (
-            <div>
-                <h1>{ quiz.name }</h1>
-                <form onSubmit={ (event) => this.handleSubmit(event) } onChange={ (event) => this.handleChange(event) }>
+            <div className='container justify-content-center text-center'>
+                <h1 className='display-1 header-custom'>{ quiz.name }</h1>
+                <form onChange={ (event) => this.handleChange(event) } className='row justify-content-around'>
                     { quiz.questions.map( (question, i) => {
                         return (
                             <div key={ question.id }>
-                                <h2>{ i + 1 }</h2>
-                                <p>{ question.problem }</p>
-                                <div>
+                                <h2 className='header-custom'>{ i + 1 }. { question.problem }</h2>
+                                <div className='text-center'>
                                     { question.options.map( (option, j) => {
                                         return (
-                                            <label key={ `option${ j }`}>
-                                                <input id={`answer-${ question.id }`} type='radio' value={ String.fromCharCode(j + 65) } name={`answer-${ question.id }`}/>
-                                                { `${ String.fromCharCode(j + 65) }.` } { option }
-                                            </label>
+                                            <div className='row justify-content-around form-check'>
+                                                <input id={`answer-${ question.id }`} type='radio' value={ String.fromCharCode(j + 65) } name={`answer-${ question.id }`} className='form-check-input radio-custom'/>
+                                                <label key={ `option${ j }`} className='row'>{ `${ String.fromCharCode(j + 65) }.` } { option }</label>
+                                            </div>
                                         )
                                     })}
                                 </div>
                             </div>
                         )
                     })}
-                    <button type='submit' value={ quiz.id }>Submit</button>
                 </form>
+                <button type='button' onClick={ (event) => this.handleSubmit(event) } value={ quiz.id } className='btn btn-primary-custom'>Submit</button>
             </div>
         )
     }
