@@ -143,7 +143,6 @@ class QuizCreator extends Component {
     }
 
     render () {
-        console.log(this.state)
         return (
             <div className='container justify-content-center text-center background-custom'>
                 <h1 className='display-1 header-custom'>Quiz Creator</h1>
